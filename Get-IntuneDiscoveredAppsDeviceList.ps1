@@ -28,7 +28,7 @@ function Get-DetectedApps {
 
         $totalValue = $detectedApps.'@odata.count' - $detectedApps.'@odata.count' % $skipValue + $skipValue
         for ($i = $skipValue; $i -lt $totalValue; $i += $skipValue) {
-            $moreObj = Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/beta/deviceManagement/detectedApps/?`$skip=$i" -Method Get 
+            $moreObj = Invoke-MgGraphRequest -Uri "$($uri)&`$skip=$i" -Method Get 
             $moreObj.value
         }
     }
